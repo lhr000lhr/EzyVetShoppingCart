@@ -4,7 +4,21 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": "npm run lint-staged:js",
+    "**/*.{js,ts,tsx,json,jsx}": [
+      "node ./scripts/lint-prettier.js",
+      "git add"
+    ]
   },
   "dependencies": {
     "dva-core": "^1.3.0",
@@ -30,8 +44,9 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.9.1",
-    "husky": "^0.14.3",
+    "husky": "^3.0.1",
     "jest": "^24.8.0",
+    "lint-staged": "^8.1.1",
     "metro-react-native-babel-preset": "^0.55.0",
     "prettier": "^1.13.5",
     "react-test-renderer": "^16.4.1",
