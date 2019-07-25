@@ -14,13 +14,13 @@ const app = dva({
   extraEnhancers: [autoRehydrate()],
   onError(e) {
     console.log('onError', e)
-  }
+  },
 })
 
 const App = app.start(<Router />)
 persistStore(app.getStore(), {
-  storage: AsyncStorage
-  // blacklist: []
+  storage: AsyncStorage,
+  blacklist: ['router'],
 })
 
 AppRegistry.registerComponent('DvaStarter', () => App)
