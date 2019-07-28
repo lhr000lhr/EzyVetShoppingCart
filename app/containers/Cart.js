@@ -4,12 +4,9 @@ import { connect } from 'react-redux'
 import { Icon, Text } from 'react-native-elements'
 import _ from 'lodash'
 import CartItem from '../components/CartItem'
-import { format2Dot } from '../utils'
+import { totalPrice } from '../utils'
 
-@connect(({ product, cart }) => ({
-  ...product,
-  cart,
-}))
+@connect(({ cart }) => ({ cart }))
 class Cart extends Component {
   static navigationOptions = {
     tabBarLabel: 'Cart',
@@ -21,7 +18,7 @@ class Cart extends Component {
   componentDidMount() {}
 
   render() {
-    const { cart } = this.props
+    const { cart, dispatch } = this.props
     const products = _.map(cart, value => value)
 
     return (
@@ -31,11 +28,11 @@ class Cart extends Component {
           contentContainerStyle={styles.containerStyle}
           data={products}
           keyExtractor={(item, i) => `${i}`}
-          renderItem={({ item, index }) => <CartItem key={index} {...item} />}
+          renderItem={({ item, index }) => <CartItem key={index} {...item} dispatch={dispatch} />}
         />
 
         <View>
-          <Text>Total Price :{format2Dot(123.2131)}</Text>
+          <Text>Total Price :{totalPrice(products)}</Text>
         </View>
       </View>
     )
