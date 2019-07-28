@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { List } from '@ant-design/react-native'
+import { format2Dot } from '../utils'
 
 const { Item } = List
 const { Brief } = Item
@@ -11,7 +12,7 @@ const ProductItem = props => {
   return (
     <Item extra="内容内容" multipleLine>
       {name}
-      <Brief>{price}</Brief>
+      <Brief>{format2Dot(price)}</Brief>
     </Item>
   )
 }
