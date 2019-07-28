@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, FlatList, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 
-import { ProductItem } from '../components'
-import { NavigationActions, createAction } from '../utils'
+import ProductItem from '../components/ProductItem'
+import { createAction } from '../utils'
 
 @connect(({ product }) => ({
   ...product,
@@ -20,11 +20,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(createAction('product/query')())
-  }
-
-  gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
+    this.requestData()
   }
 
   requestData = () => {

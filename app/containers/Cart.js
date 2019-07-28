@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, FlatList, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
-import { Icon, Text } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 
-import { createAction, NavigationActions } from '../utils'
+import CartItem from '../components/CartItem'
+import { createAction } from '../utils'
 
-@connect(({ app }) => ({ ...app }))
+@connect(({ product, cart }) => ({
+  ...product,
+  cart,
+}))
 class Cart extends Component {
   static navigationOptions = {
     tabBarLabel: 'Cart',
@@ -14,18 +18,24 @@ class Cart extends Component {
     ),
   }
 
-  gotoLogin = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
-  }
+  componentDidMount() {}
 
-  logout = () => {
-    this.props.dispatch(createAction('app/logout')())
+  requestData = () => {
+    this.props.dispatch(createAction('product/query')())
   }
 
   render() {
+    const { products, refreshing } = this.props
     return (
       <View style={styles.container}>
-        <Text>This is cart view. </Text>
+        <FlatList
+          style={styles.listStyle}
+          contentContainerStyle={styles.containerStyle}
+          data={products}
+          keyExtractor={(item, i) => `${i}`}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={this.requestData} />}
+          renderItem={({ item, index }) => <CartItem key={index} {...item} />}
+        />
       </View>
     )
   }
@@ -40,6 +50,12 @@ const styles = StyleSheet.create({
   icon: {
     width: 32,
     height: 32,
+  },
+  listStyle: {
+    width: '100%',
+  },
+  containerStyle: {
+    backgroundColor: 'red',
   },
 })
 
