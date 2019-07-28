@@ -30,7 +30,8 @@
     "react-navigation": "^2.5.1",
     "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "^5.0.7",
-    "redux-persist": "5.9.1"
+    "redux-persist": "5.9.1",
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 
-import { Button } from '../components'
-
+// import { Button } from '../components'
+import { ProductItem } from '../components'
 import { NavigationActions, createAction } from '../utils'
 
-@connect()
+@connect(({ product }) => ({
+  product,
+}))
 class Home extends Component {
   static navigationOptions = {
     tabBarLabel: 'Home',
@@ -27,9 +29,14 @@ class Home extends Component {
   }
 
   render() {
+    const { product } = this.props
     return (
       <View style={styles.container}>
-        <Button text="Goto Detail" onPress={this.gotoDetail} />
+        <FlatList
+          data={product?.products}
+          keyExtractor={(item, i) => `${i}`}
+          renderItem={({ item, index }) => <ProductItem key={index} {...item} />}
+        />
       </View>
     )
   }

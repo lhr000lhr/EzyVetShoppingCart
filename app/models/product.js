@@ -3,7 +3,7 @@ import { getProducts } from '../services/product'
 export default {
   namespace: 'product',
   state: {
-    data: 1,
+    products: [],
   },
   reducers: {
     updateState(state, { payload }) {
@@ -16,7 +16,9 @@ export default {
 
       yield put({
         type: 'updateState',
-        payload: data,
+        payload: {
+          products: [...data],
+        },
       })
     },
   },

@@ -5,5 +5,8 @@ module.exports = {
       plugins: ['transform-remove-console'],
     },
   },
-  plugins: [['@babel/plugin-transform-flow-strip-types']],
+  plugins: [
+    ['@babel/plugin-transform-flow-strip-types'],
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+  ],
 }
