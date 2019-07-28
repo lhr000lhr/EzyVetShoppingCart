@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, FlatList, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 
-// import { Button } from '../components'
 import { ProductItem } from '../components'
 import { NavigationActions, createAction } from '../utils'
 

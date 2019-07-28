@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { View, StyleSheet } from 'react-native'
-import { Text } from 'react-native-elements'
+import { List } from '@ant-design/react-native'
+
+const { Item } = List
+const { Brief } = Item
 
 const ProductItem = props => {
   const { name, price } = props
   return (
-    <View style={styles.containerStyle}>
-      <Text>{name}</Text>
-      <Text>{price}</Text>
-    </View>
+    <Item extra="内容内容" multipleLine>
+      {name}
+      <Brief>{price}</Brief>
+    </Item>
   )
 }
 
@@ -18,12 +20,5 @@ ProductItem.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 }
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    paddingBottom: 40,
-    backgroundColor: 'white',
-  },
-})
 
 export default ProductItem
