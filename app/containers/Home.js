@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
 @connect()
 class Home extends Component {
@@ -15,7 +15,11 @@ class Home extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/house.png')}
       />
-    )
+    ),
+  }
+
+  componentDidMount() {
+    this.props.dispatch(createAction('product/query')())
   }
 
   gotoDetail = () => {
@@ -35,12 +39,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   icon: {
     width: 32,
-    height: 32
-  }
+    height: 32,
+  },
 })
 
 export default Home
