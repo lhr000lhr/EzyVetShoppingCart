@@ -16,3 +16,18 @@ export const format2Dot = number => {
 
   return `${floatNumber.toFixed(2)}`
 }
+
+export const totalPrice = products => {
+  const price = _.reduce(
+    products,
+    (sum, product) => sum + (product?.price ?? 0) * (product?.amount ?? 0),
+    0
+  )
+
+  const floatNumber = parseFloat(price)
+  if (_.isNaN(floatNumber)) {
+    return '0.00'
+  }
+
+  return `${floatNumber.toFixed(2)}`
+}

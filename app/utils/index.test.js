@@ -1,4 +1,4 @@
-import { format2Dot } from './index'
+import { format2Dot, totalPrice } from './index'
 
 describe('format2Dot tests', () => {
   it('should add zero for int numbers and return them as string', () => {
@@ -29,5 +29,23 @@ describe('format2Dot tests', () => {
     expect(format2Dot('aaa')).toEqual('0.00')
     expect(format2Dot('$@#@#')).toEqual('0.00')
     expect(format2Dot('$@#@#123')).toEqual('0.00')
+  })
+})
+
+describe('totalPrice tests', () => {
+  it('should add zero for int numbers and return them as string', () => {
+    expect(totalPrice([{ price: 190.5, amount: 6 }])).toEqual(format2Dot(190.5 * 6))
+    expect(totalPrice([{ price: 1, amount: 6 }])).toEqual(format2Dot(6))
+    expect(totalPrice([{}])).toEqual(format2Dot(0))
+  })
+
+  it('mutiple product and return them as string', () => {
+    expect(totalPrice([{ price: 190.5, amount: 6 }, { price: 1, amount: 6 }])).toEqual(
+      format2Dot(190.5 * 6 + 1 * 6)
+    )
+    expect(totalPrice([{ price: 1, amount: 6 }, { price: 2.001, amount: 6 }])).toEqual(
+      format2Dot(6 + 2.001 * 6)
+    )
+    expect(totalPrice([{ price: 1, amount: 6 }, {}])).toEqual(format2Dot(6))
   })
 })
