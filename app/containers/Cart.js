@@ -3,15 +3,28 @@ import { StyleSheet, View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Icon, Text } from 'react-native-elements'
 import _ from 'lodash'
+
 import CartItem from '../components/CartItem'
+import CartBadge from '../components/CartBadge'
 import { totalPrice } from '../utils'
 
+// const CartBadge = props => {
+//   const { cart, children } = props
+//   const products = _.map(cart, value => value)
+//   debugger
+//   const count = products.length
+//   return <Badge text={9}>{children}</Badge>
+// }
+
+// connect(({ cart }) => ({ cart }))(CartBadge)
 @connect(({ cart }) => ({ cart }))
 class Cart extends Component {
   static navigationOptions = {
     tabBarLabel: 'Cart',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Icon name="shopping-cart" type="entypo" color={focused ? tintColor : 'gray'} />
+      <CartBadge>
+        <Icon name="shopping-cart" type="entypo" color={focused ? tintColor : 'gray'} />
+      </CartBadge>
     ),
   }
 

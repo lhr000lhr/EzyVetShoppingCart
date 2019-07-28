@@ -19,7 +19,7 @@ const ProductItem = props => {
         <ControlArea
           onPress={() => {
             dispatch(createAction('cart/add')({ name, price }))
-            Toast.show('add', {
+            Toast.show(`Add ${name}`, {
               duration: Toast.durations.SHORT,
               position: Toast.positions.BOTTOM,
             })
@@ -29,7 +29,7 @@ const ProductItem = props => {
       multipleLine
     >
       {name}
-      <Brief>{format2Dot(price)}</Brief>
+      <Brief>Price:{format2Dot(price)}</Brief>
     </Item>
   )
 }
