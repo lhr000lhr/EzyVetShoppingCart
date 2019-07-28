@@ -3,15 +3,31 @@ import PropTypes from 'prop-types'
 
 import { View, Button } from 'react-native'
 import { List } from '@ant-design/react-native'
-import { format2Dot } from '../utils'
+import Toast from 'react-native-root-toast'
+
+import { format2Dot, createAction } from '../utils'
 
 const { Item } = List
 const { Brief } = Item
 
 const ProductItem = props => {
-  const { name, price } = props
+  const { dispatch, name, price } = props
+
   return (
-    <Item extra={<ControlArea onPress={() => {}} />} multipleLine>
+    <Item
+      extra={
+        <ControlArea
+          onPress={() => {
+            dispatch(createAction('cart/add')({ name, price }))
+            Toast.show('add', {
+              duration: Toast.durations.SHORT,
+              position: Toast.positions.BOTTOM,
+            })
+          }}
+        />
+      }
+      multipleLine
+    >
       {name}
       <Brief>{format2Dot(price)}</Brief>
     </Item>

@@ -33,14 +33,8 @@ const ControlArea = props => {
   const { onChange, amount } = props
   return (
     <View style={styles.controlAreaStyle}>
-      <Stepper key="0" max={10} min={1} defaultValue={amount} onChange={onChange} />
-      <Button
-        title="delete"
-        color="red"
-        onPress={() => {
-          alert()
-        }}
-      />
+      <Stepper key="0" max={10} min={1} value={amount} onChange={onChange} />
+      <Button title="delete" color="red" onPress={() => {}} />
     </View>
   )
 }

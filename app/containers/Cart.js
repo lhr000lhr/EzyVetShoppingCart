@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, FlatList, RefreshControl } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
-import { Icon } from 'react-native-elements'
-
+import { Icon, Text } from 'react-native-elements'
+import _ from 'lodash'
 import CartItem from '../components/CartItem'
-import { createAction } from '../utils'
+import { format2Dot } from '../utils'
 
 @connect(({ product, cart }) => ({
   ...product,
@@ -20,12 +20,10 @@ class Cart extends Component {
 
   componentDidMount() {}
 
-  requestData = () => {
-    this.props.dispatch(createAction('product/query')())
-  }
-
   render() {
-    const { products, refreshing } = this.props
+    const { cart } = this.props
+    const products = _.map(cart, value => value)
+
     return (
       <View style={styles.container}>
         <FlatList
@@ -33,9 +31,12 @@ class Cart extends Component {
           contentContainerStyle={styles.containerStyle}
           data={products}
           keyExtractor={(item, i) => `${i}`}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={this.requestData} />}
           renderItem={({ item, index }) => <CartItem key={index} {...item} />}
         />
+
+        <View>
+          <Text>Total Price :{format2Dot(123.2131)}</Text>
+        </View>
       </View>
     )
   }

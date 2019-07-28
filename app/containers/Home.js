@@ -28,7 +28,7 @@ class Home extends Component {
   }
 
   render() {
-    const { products, refreshing } = this.props
+    const { products, refreshing, dispatch } = this.props
     return (
       <View style={styles.container}>
         <FlatList
@@ -37,7 +37,9 @@ class Home extends Component {
           data={products}
           keyExtractor={(item, i) => `${i}`}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={this.requestData} />}
-          renderItem={({ item, index }) => <ProductItem key={index} {...item} />}
+          renderItem={({ item, index }) => (
+            <ProductItem key={index} {...item} dispatch={dispatch} />
+          )}
         />
       </View>
     )
