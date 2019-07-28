@@ -29,6 +29,18 @@ export default {
       cart[name] = product
       return { ...cart }
     },
+    setAmount(state, { payload }) {
+      const { name, price, amount } = payload
+      const cart = _.cloneDeep(state)
+      let product = cart[name]
+      if (product) {
+        product.amount = amount
+      } else {
+        product = { price, name, amount }
+      }
+      cart[name] = product
+      return { ...cart }
+    },
     remove(state, { payload }) {
       const { name } = payload
       const cart = { ...state }

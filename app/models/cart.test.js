@@ -17,6 +17,25 @@ describe('Model Cart', () => {
     },
   }
 
+  it('set amount should work', () => {
+    const { setAmount } = cart.reducers
+    const payload = {
+      name: 'Sledgehammer',
+      price: 125.75,
+      amount: 99,
+    }
+    let resultStage = setAmount(state, { payload })
+    expect(resultStage).to.deep.equal({
+      ...state,
+      Sledgehammer: { ...payload },
+    })
+
+    resultStage = setAmount({}, { payload })
+    expect(resultStage).to.deep.equal({
+      Sledgehammer: { ...payload },
+    })
+  })
+
   it('add should work', () => {
     const { add } = cart.reducers
     const payload = {
@@ -79,7 +98,6 @@ describe('Model Cart', () => {
     const { remove } = cart.reducers
 
     let resultStage = remove(state, { payload: { name: 'Hacksaw' } })
-    console.log(resultStage)
     expect(resultStage).to.deep.equal({
       Chisel: {
         name: 'Chisel',
