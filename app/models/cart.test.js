@@ -74,4 +74,31 @@ describe('Model Cart', () => {
       },
     })
   })
+
+  it('delete all should work', () => {
+    const { remove } = cart.reducers
+
+    let resultStage = remove(state, { payload: { name: 'Hacksaw' } })
+    console.log(resultStage)
+    expect(resultStage).to.deep.equal({
+      Chisel: {
+        name: 'Chisel',
+        price: 12.9,
+        amount: 10,
+      },
+    })
+
+    resultStage = remove(state, { payload: { name: 'Sledgehammer' } })
+    expect(resultStage).to.deep.equal({ ...state })
+
+    resultStage = remove(state, { payload: { name: 'Chisel' } })
+
+    expect(resultStage).to.deep.equal({
+      Hacksaw: {
+        price: 18.45,
+        name: 'Hacksaw',
+        amount: 1,
+      },
+    })
+  })
 })
