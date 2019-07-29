@@ -8,15 +8,6 @@ import CartItem from '../components/CartItem'
 import CartBadge from '../components/CartBadge'
 import { totalPrice } from '../utils'
 
-// const CartBadge = props => {
-//   const { cart, children } = props
-//   const products = _.map(cart, value => value)
-//   debugger
-//   const count = products.length
-//   return <Badge text={9}>{children}</Badge>
-// }
-
-// connect(({ cart }) => ({ cart }))(CartBadge)
 @connect(({ cart }) => ({ cart }))
 class Cart extends Component {
   static navigationOptions = {
@@ -65,9 +56,7 @@ const styles = StyleSheet.create({
   listStyle: {
     width: '100%',
   },
-  containerStyle: {
-    backgroundColor: 'red',
-  },
+  containerStyle: {},
 })
 
 export default Cart
