@@ -13,9 +13,13 @@ Check this link below if you meet this problem `Could not find iPhone X simulato
 
 https://stackoverflow.com/questions/54504076/react-native-run-ios-returns-error-could-not-find-iphone-x-simulator
 
-| Home       | Cart           |
-| ---------- | -------------- |
-| ![首页][1] | ![任务发布][2] |
+| Home       | Cart       |
+| ---------- | ---------- |
+| ![Home][1] | ![Cart][2] |
+
+| Home       | Cart       |
+| ---------- | ---------- |
+| ![Home][3] | ![Cart][4] |
 
 ## Test
 
@@ -27,5 +31,7 @@ npm test
 
 MIT
 
-[1]: ./screenshots/home.png
-[2]: ./screenshots/cart.png
+[1]: ./screenshots/home.jpg
+[2]: ./screenshots/cart.jpg
+[3]: ./screenshots/home_a.jpg
+[4]: ./screenshots/cart_a.jpg
