@@ -27,7 +27,7 @@
     "prop-types": "^15.6.2",
     "react": "16.6.3",
     "react-native": "0.57.8",
-    "react-native-elements": "^1.1.0",
+    "react-native-elements": "^2.3.0",
     "react-native-root-toast": "^3.1.2",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^2.5.1",
